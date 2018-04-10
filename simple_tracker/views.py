@@ -27,7 +27,6 @@ def increase_miss(request):
         c = Course.objects.get(pk = name)
         c.misses = c.misses + 1
         c.save()
-        print(name)
         return redirect(index)
     return redirect(index)
 
@@ -39,6 +38,5 @@ def decrease_miss(request):
         if c.misses > 0:
             c.misses = c.misses - 1
             c.save()
-        print(name)
         return redirect(index)
     return redirect(index)

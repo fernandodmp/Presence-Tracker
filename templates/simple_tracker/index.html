@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+  {% extends "simple_tracker/base.html" %}
+  {% block head_block %}
+   <title>Faltas</title>
+   <style media="screen">
+     button{
+       width: 100px;
+       border: 0px;
+     }
+     .button-td{
+       width: 150px;
+     }
+   </style>
+  {% endblock %}
+  {% block body_block%}
+    <div class="container">
+      <div class="row">
+        <table class="table table-striped table-bordered">
+          <thead>
+            <th>Disciplina</th>
+            <th class="text-center">Faltas</th>
+            <th class="text-center">Add</th>
+            <th class="text-center">Remove</th>
+          </thead>
+          {% if courses %}
+            {% for course in courses %}
+            <tr>
+              <td>{{course.name}}</td>
+              <td class="text-center">{{course.misses}}</td>
+              <td class="text-center button-td">
+                <form class="" action="{% url 'increase_miss' %}" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-primary" type="submit" value="{{course.name}}" name='add'><i class="fab fa-empire"></i></button>
+
+                </form>
+              </td>
+              <td class="text-center button-td">
+                <form class="" action="{% url 'decrease_miss' %}" method="post">
+                  {% csrf_token %}
+                  <button class="btn btn-primary" type="submit" value="{{course.name}}" name='remove'><i class="fab fa-rebel"></i></button>
+
+                </form>
+              </td>
+            </tr>
+            {% endfor %}
+          {% endif %}
+        </table>
+      </div>
+    </div>
+  {% endblock %}

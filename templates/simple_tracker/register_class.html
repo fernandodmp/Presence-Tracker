@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+{% extends 'simple_tracker/base.html' %}
+{% block head_block %}
+  <title>Register Class</title>
+{% endblock %}
+{% block body_block %}
+  <div class="container text-center">
+    <h1>Preencha o formulário</h1>
+    <form method="post" target="_self">
+      <div class="form-group">
+        {{form.as_p}}
+        {% csrf_token %}
+      </div>
+      <input type="submit" name="Submit" value="Submit" class="btn btn-primary">
+    </form>
+  </div>
+{% endblock %}

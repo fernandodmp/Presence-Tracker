@@ -18,7 +18,6 @@ from django.urls import path
 from simple_tracker import views
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
     path('', views.index, name = 'index'),
     path('register', views.register, name = 'register'),
     path('increase_miss', views.increase_miss, name='increase_miss'),

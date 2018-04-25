@@ -22,5 +22,6 @@ urlpatterns = [
     path('', views.index, name = 'index'),
     path('register', views.register, name = 'register'),
     path('increase_miss', views.increase_miss, name='increase_miss'),
-    path('decrease_miss', views.decrease_miss, name='decrease_miss')
+    path('decrease_miss', views.decrease_miss, name='decrease_miss'),
+    path('remove', views.remove, name = 'remove')
 ]

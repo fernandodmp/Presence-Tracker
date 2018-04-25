@@ -2,16 +2,36 @@
 {% extends 'simple_tracker/base.html' %}
 {% block head_block %}
   <title>Register Class</title>
+  <style media="screen">
+    h1{
+      margin: 30px;
+    }
+    input{
+      margin-right: 0px;
+    }
+    .my-btn{
+      width: 100%;
+    }
+  </style>
 {% endblock %}
 {% block body_block %}
   <div class="container text-center">
-    <h1>Preencha o formulário</h1>
+    <h1 class="text-center">Fill the Form!</h1>
     <form method="post" target="_self">
-      <div class="form-group">
-        {{form.as_p}}
-        {% csrf_token %}
-      </div>
-      <input type="submit" name="Submit" value="Submit" class="btn btn-primary">
+        <div class="form-row">
+          <div class="form-group col-md-6">
+            {{ form.name.errors }}
+            <label for="{{ form.name.id_for_label }}">Course Name:</label>
+            {{ form.name }}
+          </div>
+          <div class="form-group col-md-6">
+            {{ form.misses.errors }}
+            <label for="{{ form.misses.id_for_label }}">Misses:</label>
+            {{ form.misses }}
+          </div>
+          {% csrf_token %}
+        </div>
+      <input type="submit" name="Submit" value="Submit" class="btn btn-primary my-btn">
     </form>
   </div>
 {% endblock %}

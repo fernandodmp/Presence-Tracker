@@ -1,5 +1,6 @@
 from django.shortcuts import render, redirect
-from simple_tracker.models import Course, CourseForm
+from simple_tracker.models import Course
+from simple_tracker.forms import DeleteForm, CourseForm
 
 # Create your views here.
 def index(request):
@@ -12,14 +13,21 @@ def register(request):
     if request.method == 'POST':
         form = CourseForm(request.POST)
         if form.is_valid():
-            print("Validation Sucess!")
-            print("Course Name: " + form.cleaned_data['name'])
-            print("Number of missed classes: " + str(form.cleaned_data['misses']))
             form.save(commit=True)
             return redirect(index)
         else:
             print('Form invalid!')
     return render(request, 'simple_tracker/register_class.html', context={'form':form})
+
+def remove(request):
+    form = DeleteForm()
+    if request.method == 'POST':
+        form = DeleteForm(request.POST)
+        if form.is_valid():
+            name = form.cleaned_data['course_choice']
+            c = Course.objects.get(pk = name).delete()
+            return redirect(index)
+    return render(request, 'simple_tracker/remove_class.html', context={'form':form})
 
 def increase_miss(request):
     if request.method == 'POST':

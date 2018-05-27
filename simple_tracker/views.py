@@ -1,6 +1,6 @@
 from django.shortcuts import render, redirect
 from simple_tracker.models import Course
-from simple_tracker.forms import DeleteForm, CourseForm
+from simple_tracker.forms import DeleteForm, CourseForm, UserForm
 
 # Create your views here.
 def index(request):
@@ -48,3 +48,20 @@ def decrease_miss(request):
             c.save()
         return redirect(index)
     return redirect(index)
+
+def registration(request):
+    if request.method == 'POST':
+        user_form = UserForm(data=request.POST)
+        if user_form.is_valid():
+            user = user_form.save()
+            user.set_password(user.password) 
+            user.save()
+            redirect(index)
+        else:
+            print("Error!")
+    else:
+        user_form = UserForm()
+    return render(request, 'simple_tracker/registration.html', context={'user_form':user_form})
+
+def login(request):
+    return render(request, 'simple_tracker/login.html')

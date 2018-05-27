@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+{% extends 'simple_tracker/base.html' %}
+{% load staticfiles %}
+
+{% block head_block %}
+<title>Registration</title>
+{% endblock %}
+
+{% block body_block %}
+<div class="container">
+    <form class="form-horizontal" role="form" method="POST" target="/registration">
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <h2>Register New User</h2>
+                <hr>
+            </div>
+        </div>
+        <div class="row">
+            {{ user_form.username.errors }}
+            <div class="col-md-3 field-label-responsive">
+                <label for="{{ user_form.username.id_for_label }}">Username</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-user"></i></div>
+                        {{ user_form.username }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put name validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {{ user_form.email.errors }}
+            <div class="col-md-3 field-label-responsive">
+                <label for="{{ user_form.email.id_for_label }}">E-Mail Address</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-at"></i></div>
+                        {{ user_form.email }}
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-3">
+                <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                            <!-- Put e-mail validation error messages here -->
+                        </span>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {{ user_form.password.errors }}
+            <div class="col-md-3 field-label-responsive">
+                <label for="{{ user_form.password.id_for_label}}">Password</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group has-danger">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem"><i class="fa fa-key"></i></div>
+                        {{ user_form.password }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            {{ user_form.confirm_password.errors }}
+            <div class="col-md-3 field-label-responsive">
+                <label for="{{ user_form.confirm_password.id_for_label }}">Confirm Password</label>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+                        <div class="input-group-addon" style="width: 2.6rem">
+                            <i class="fa fa-repeat"></i>
+                        </div>
+                        {{ user_form.confirm_password }}
+                    </div>
+                </div>
+            </div>
+        </div>
+        {% csrf_token %}
+        <div class="row">
+            <div class="col-md-3"></div>
+            <div class="col-md-6">
+                <button type="submit" class="btn btn-primary"><i class="fa fa-user-plus"></i> Register</button>
+            </div>
+        </div>
+    </form>
+</div>
+{% endblock %}

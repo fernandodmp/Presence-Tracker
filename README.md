@@ -13,3 +13,6 @@ Bootstrap 4
 HTML 5
 
 A lil bit (almost nothing) of CSS3
+
+
+(Added Registration, and will soon add Login and user-especific courses)
